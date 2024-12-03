@@ -7,6 +7,11 @@ use Illuminate\Support\Arr;
 
 class Post extends Model // tabel post 
 {
+    protected $fillable = ['title', 'author', 'slug', 'body'];
+
+    // kalau mau rubah nama tabel, banyak docs di laravel
+    // protected $table = 'blog_post';
+
     // public static function all()
     // {
     //     return [
@@ -27,18 +32,18 @@ class Post extends Model // tabel post
     //     ];
     // }
 
-    public static function find($slug): array
-    {
-        // return Arr::first(static::all(), function ($post) use ($slug) {
-        //     return $post['slug'] == $slug;
-        // });
+    // public static function find($slug): array
+    // {
+    //     // return Arr::first(static::all(), function ($post) use ($slug) {
+    //     //     return $post['slug'] == $slug;
+    //     // });
 
-        $post = Arr::first(static::all(), fn($post) => $post['slug'] == $slug);
+    //     $post = Arr::first(static::all(), fn($post) => $post['slug'] == $slug);
 
-        if (!$post) {
-            abort(404);
-        }
+    //     if (!$post) {
+    //         abort(404);
+    //     }
 
-        return $post;
-    }
+    //     return $post;
+    // }
 }
