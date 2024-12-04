@@ -4,6 +4,9 @@
     {{-- search input --}}
     <x-search />
 
+    {{-- pagination --}}
+    {{ $posts->links() }}
+
     <div class="py-1 px-1 mx-auto max-w-screen-xl lg:py-2 lg:px-0">
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 
