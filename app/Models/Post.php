@@ -12,6 +12,9 @@ class Post extends Model // tabel post
 
     protected $fillable = ['title', 'author', 'slug', 'body'];
 
+    // eager loading by Default = INI PALING BENER!!!!!!!!, paling mudah, agar query tidak banyak!!!
+    protected $with = ['author', 'category'];
+
     // relasi
     public function author(): BelongsTo
     {
