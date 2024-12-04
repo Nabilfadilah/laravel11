@@ -12,12 +12,13 @@ class Post extends Model // tabel post
 
     protected $fillable = ['title', 'author', 'slug', 'body'];
 
+    // relasi
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    //model post menghubungkan class category model
+    // relasi model post menghubungkan class category model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

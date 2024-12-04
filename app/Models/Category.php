@@ -11,7 +11,7 @@ class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
-    // category punya banyak post
+    // relasi category punya banyak post
     public function posts(): HasMany
     {
         // hasmany ambil dari class post

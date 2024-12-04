@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    // method posts 
+    // relasi method posts 
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_id');
