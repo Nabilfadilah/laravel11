@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Arr;
@@ -37,6 +38,14 @@ Route::get('/authors/{user:username}', function (User $user) {
         'title' => count($user->posts) . ' Articles By ' . $user->name,
         'posts' =>
         $user->posts
+    ]);
+});
+
+// untuk melihat post berdasarkan category
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'title' => 'Articles In : ' . $category->name,
+        'posts' => $category->posts
     ]);
 });
 
