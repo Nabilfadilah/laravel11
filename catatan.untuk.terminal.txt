@@ -1,0 +1,76 @@
+Install laravel di terminal:
+
+composer create-project –prefer-dist laravel/Laravel
+
+composer create-project --prefer-dist laravel/Laravel perpus
+
+composer create-project laravel/laravel 
+
+------------------------------------------------
+nambah data ke database SQLite/MySQL:
+- php artisan tinker
+- App\Models\Post::create(['title' => 'Judul Artikel 2','author' => 'Yakub Ayub','slug
+' => 'judul-artikel-2','body' => 'Lorem ipsum dolor sit amet consectetur adipisicing e
+lit. Inventore totam facere in, eum quibusdam autem quisquam beatae est cumque error v
+oluptatibus repudiandae aspernatur. Consequuntur reprehenderit soluta aliquam cupidita
+te atque impedit.']);
+
+------------------------------------------------
+Cara hapus semua table dan menambah table baru:
+- php artisan migrate:fresh 
+- php artisan migrate = nambah table ke database
+
+------------------------------------------------
+Cara menentukan user itu admin/bukan:
+- App\Models\User::factory(5)->create(); = menambah user 5
+- App\Models\User::factory(5)->unverified()->create(); = menambah user 5 yang belum diverifikasi
+- App\Models\User::factory()->admin()->create(); = menambah user yang sudah di verifikasi dan user ini admin
+
+------------------------------------------------
+Untuk membuat aturan add data post otomatis di terminal:
+- php artisan make:factory PostFactory  
+
+------------------------------------------------
+Mengambil data pertama di post:
+$post = App\Models\Post::first()
+
+------------------------------------------------
+Cara bikin model:
+- php artisan make:model nama_model
+
+------------------------------------------------
+Cara bikin migration dan factory nya sekaligus:
+- php artisan make:model nama_model -mf
+(!ingat pembuatan data yaitu harus ada Models, Factory, Migration)
+
+------------------------------------------------
+Untuk menambah table dengan mudah menggabungkan dari post:factory, category:factory, dan user:factory :
+- App\Models\Post::factory(50)->recycle([Category::factory(3)->create(), User::factory(5)->create()])->create(); 
+
+------------------------------------------------
+Tambah data ke database menggunakan db:seed:
+- php artisan db:seed
+
+------------------------------------------------
+Untuh tambah data dan buat baru table dari siding database:
+- php artisan migrate:fresh --seed
+
+------------------------------------------------
+Untuk menambah data tapi dipisahkan:
+- php artisan make:seeder
+
+--------------------------------------------
+N+1 Problem? apa itu yaaa?
+Ketika terlalu banyak melakukan query, gara-gara melakukan looping menampilkan postingan pada seluruh blog kita. tapi didalamnya punya relasi didalamnya.
+
+--------------------------------------------
+Cara buat component dengan terminal di Laravel?
+- php artisan make:component NamaKomponen
+
+Contoh Penggunaannya?
+- <x-alert />
+- <x-alert type="success" message="Data berhasil disimpan!" />
+
+--------------------------------------------
+cara kalua mau rubah yang tailwind yang dari vendor?
+- php artisan vendor:publish
