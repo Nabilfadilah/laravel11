@@ -24,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
         // untuk membatasi, keamanan
         // preventing lazy loading
         Model::preventLazyLoading();
+
+        // rubah pagination style
+        // misal pagination...
     }
 }
