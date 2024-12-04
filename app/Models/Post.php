@@ -17,6 +17,12 @@ class Post extends Model // tabel post
         return $this->belongsTo(User::class);
     }
 
+    //model post menghubungkan class category model
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     // kalau mau rubah nama tabel, banyak docs di laravel
     // protected $table = 'blog_post';
 
