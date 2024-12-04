@@ -18,6 +18,11 @@ return new class extends Migration
                 table: 'users',
                 indexName: 'posts_author_id'
             );
+            // relasi anatar tabel
+            $table->foreignId('category_id')->constrained( // pakai constrain
+                table: 'categories',
+                indexName: 'posts_category_id'
+            );
             // $table->unsignedBigInteger('author_id');
             // $table->foreign('author_id')->references('id')->on('users'); // metode foreignId untuk membuat kolom Anda,
             $table->string('slug')->unique();
