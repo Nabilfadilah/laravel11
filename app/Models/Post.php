@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,6 +27,36 @@ class Post extends Model // tabel post
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // untuk model scope filter pencarian
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        $query->when(
+            $filters['search'] ?? false,
+            fn($query, $search) =>
+            $query->where('title', 'like', '%' . $search . '%')
+        );
+
+        $query->when(
+            $filters['category'] ?? false,
+            fn($query, $category) =>
+            $query->whereHas('category', fn($query) => $query->where('slug', $category))
+        );
+
+        $query->when(
+            $filters['author'] ?? false,
+            fn($query, $author) =>
+            $query->whereHas('author', fn($query) => $query->where('username', $author))
+        );
+
+        // if ($filters['search'] ?? false) {
+        //     $query->where('title', 'like', '%' . request('search') . '%');
+        // }
+
+        // if (!empty($filters['search'])) {
+        //     $query->where('title', 'like', '%' . $filters['search'] . '%');
+        // }
     }
 
     // kalau mau rubah nama tabel, banyak docs di laravel
