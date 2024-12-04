@@ -10,7 +10,9 @@
 
             </a>
             <div class="text-base text-gray-500">
-                <a href="#">{{ $post['author'] }}</a> | {{ $post->created_at->format('j F Y') }}
+                <a href="/authors/{{ $post->author->id }}"
+                    class="hover:underline text-gray-400">{{ $post->author->name }}</a> |
+                {{ $post->created_at->format('j F Y') }}
             </div>
 
             <p class="my-4 font-light">{{ Str::limit($post['body'], 100) }}</p>
