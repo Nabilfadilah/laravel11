@@ -32,9 +32,9 @@ Route::get('/posts/{post:slug}', function (Post $post) {
 });
 
 // untuk melihat post dari satu user apa aja
-Route::get('/authors/{user}', function (User $user) {
+Route::get('/authors/{user:username}', function (User $user) {
     return view('posts', [
-        'title' => 'Articles By ' . $user->name,
+        'title' => count($user->posts) . ' Articles By ' . $user->name,
         'posts' =>
         $user->posts
     ]);
