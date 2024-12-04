@@ -21,7 +21,11 @@ Route::get('/about', function () {
 Route::get('/posts', function () {
 
     // katau tidak ada, maka tampilkan semua datanya
-    return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->get()]);
+    return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request([
+        'search',
+        'category',
+        'author'
+    ]))->latest()->paginate(10)->withQueryString()]);
 });
 
 // pakai slug untuk membandinkan 
