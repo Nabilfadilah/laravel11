@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
+use function Pest\Laravel\post;
+
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
 });
@@ -17,13 +19,9 @@ Route::get('/about', function () {
 // buat route baru ke halamanblog yang ad judul, list
 // ontact, email, password
 Route::get('/posts', function () {
-    // kalau mau 2 relasi, maka kasih dengan array ['relasi'...]
-    // $post = Post::with(['author', 'category'])->latest()->get(); // jika ingin menambahkan sesuatu dalam query, maka tambah get() kalau hanya select * aja maka pake all()
 
-    // $post = Post::with('author')->latest()->get(); // jika ingin menambahkan sesuatu dalam query, maka tambah get() kalau hanya select * aja maka pake all()
-
-    $posts = Post::latest()->get();
-    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
+    // katau tidak ada, maka tampilkan semua datanya
+    return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->get()]);
 });
 
 // pakai slug untuk membandinkan 
